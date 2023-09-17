@@ -16,10 +16,13 @@ export class AuthPageComponent {
   onLogin(user: any) {
     this.authServices.login(user).subscribe(
       (response) => {
-        //o rutare ex. this.router.navigate(['rutaReala'])
+        console.log(`Logged: ${user}`);
       },
       (error) => {
         console.error('Login Error: ',error)
+      },
+      ()=>{
+        alert('Login Execued!');
       }
     );
   }
@@ -27,10 +30,13 @@ export class AuthPageComponent {
   onRegister(user: any) {
     this.authServices.singUp(user).subscribe(
         (response) => {
-          
+          console.log(`Registerde: ${user}`);
         },
         (error) => {
           console.error('Register Error: ',error)
+        },
+        ()=>{
+        alert('Register Execued!');
         }
     );
   }
