@@ -7,3 +7,16 @@
         margin-right: 0;
     }
 }
+
+.sign-switcher {
+    color: #000000;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.sign-switcher:hover{
+    color: red;
+    font-weight: bold;
+    text-decoration: none;
+}
