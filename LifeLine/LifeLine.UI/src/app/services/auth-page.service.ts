@@ -7,8 +7,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AuthPageService {
+  private baseUrl: string = environment.apiBaseUrl+ '/user';
 
-  private baseUrl: string = ""
   constructor(private http: HttpClient) { }
 
   singUp(userInfo: any): Observable<any> {

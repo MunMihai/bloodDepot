@@ -19,7 +19,10 @@ export class AuthPageComponent {
         //o rutare ex. this.router.navigate(['rutaReala'])
       },
       (error) => {
-        console.error('Login Error: ',error)
+        console.error('Login Error: ',error);
+      },
+      ()=>{
+        alert('Login Execued!');
       }
     );
   }
@@ -31,6 +34,9 @@ export class AuthPageComponent {
         },
         (error) => {
           console.error('Register Error: ',error)
+        },
+        ()=>{
+        alert('Register Execued!');
         }
     );
   }
