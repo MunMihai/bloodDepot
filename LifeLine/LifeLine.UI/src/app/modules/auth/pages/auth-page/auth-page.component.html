@@ -1,9 +1,37 @@
-<app-login></app-login>
-<app-register></app-register>
+<section class="bg-gray-50 dark:bg-gray-900 selection:bg-red-300 selection:text-white">
+  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+      <img class="w-8 h-8 mr-2" src="https://img.icons8.com/?size=120&id=26115&format=png" alt="logo">
+      LifeLine
+    </a>
+    <div
+      class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+      <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light   ">
-    <a class="navbar-brand" href="#">My Angular App</a>
-    <!-- Add navigation links and other components here -->
-  </nav>
+        <!-- Components -->
+        <div *ngIf="showLogin">
+          <h1 class="text-xl font-bold pb-3 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+            Sign in to your account
+          </h1>
+          <app-login (onSubmit)="onLogin($event)"></app-login>
+          <p class="text-sm font-light text-center pt-3 text-gray-500 dark:text-gray-400">Don’t have an account yet?
+            <span class="cursor-pointer font-medium text-red-600 hover:underline dark:text-red-500"
+              (click)="showLogin = !showLogin">Sign up</span>
+          </p>
+        </div>
+        <div *ngIf="!showLogin">
+          <h1 class="text-xl font-bold pb-3 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+            Register new account
+          </h1>
+          <app-register (onSubmit)="onRegister($event)"></app-register>
+          <p class="text-sm font-light text-center pt-3 text-gray-500 dark:text-gray-400">
+            <span class="cursor-pointer font-medium text-red-600 hover:underline dark:text-red-500"
+              (click)="showLogin = !showLogin">I am already a member!</span>
+          </p>
+        </div>
+        <!-- Components -->
 
-  
+      </div>
+    </div>
+  </div>
+</section>
