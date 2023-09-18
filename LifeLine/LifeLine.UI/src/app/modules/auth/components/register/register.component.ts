@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RegisterModel } from '../../models/registerModel.component';
 
 @Component({
   selector: 'app-register',
@@ -8,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+  @Output() onSubmit  = new EventEmitter<RegisterModel>();
   public registerForm: FormGroup = new FormGroup({
     fullName: new FormControl('', [Validators.required]),
     securityNumber: new FormControl('', [Validators.required]),
@@ -28,14 +30,24 @@ export class RegisterComponent {
   constructor(private route: Router) { }
 
   submit() {
-    this.step = this.step + 1;
-    if (this.step == 2) {
-      this.route.navigate(["/login"])
+    if(this.registerForm.invalid) {
+      this.registerForm.markAllAsTouched();
+      console.log('register current form', this.registerForm);
+      return;
     }
+
+    const formValue = this.registerForm.value as RegisterModel;
+
+    this.onSubmit.emit(formValue);
+
   }
 
   previous() {
     this.step = this.step - 1;
+  }
+  
+  public next(): void {
+    this.step++;
   }
 
   get email() {

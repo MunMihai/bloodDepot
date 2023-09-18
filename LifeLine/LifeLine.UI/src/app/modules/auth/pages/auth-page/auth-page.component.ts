@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthPageService } from 'src/app/services/auth-page.service';
+import { RegisterModel } from '../../models/registerModel.component';
 
 @Component({
   selector: 'app-auth-page',
@@ -13,8 +14,12 @@ export class AuthPageComponent {
 
   constructor(private authServices: AuthPageService, private router: Router) { }
 
-  onLogin(user: any) {
-    this.authServices.login(user).subscribe(
+  onLogin() {
+    // const userMock : User ={
+    //   username: "Pavel",
+    //   password: "abc123",
+    //   confirmPassword: "abc123",
+    this.authServices.login(null).subscribe(
       (response) => {
         //o rutare ex. this.router.navigate(['rutaReala'])
       },
@@ -27,10 +32,11 @@ export class AuthPageComponent {
     );
   }
 
-  onRegister(user: any) {
+  onRegister(user: RegisterModel) {
+    console.log('user', user);
     this.authServices.singUp(user).subscribe(
         (response) => {
-          
+          console.log('response from registration', user);
         },
         (error) => {
           console.error('Register Error: ',error)
