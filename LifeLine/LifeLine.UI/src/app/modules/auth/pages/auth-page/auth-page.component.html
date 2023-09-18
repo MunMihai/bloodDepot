@@ -1,35 +1,37 @@
-<div class="container py-5 ">
-    <div class="row g-0 align-items-center">
-        <div class="col-lg-6 mb-5 mb-lg-0">
-            <div class="card cascading-right " style="
-              background: hsla(0, 100%, 50%, 0.55);
-              backdrop-filter: blur(30px);
-              border: 2px solid red;
-              ">
-                <div class="card-body p-5 shadow-5 text-center ">
+<section class="bg-gray-50 dark:bg-gray-900 selection:bg-red-300 selection:text-white">
+  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+      <img class="w-8 h-8 mr-2" src="https://img.icons8.com/?size=120&id=26115&format=png" alt="logo">
+      LifeLine
+    </a>
+    <div
+      class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+      <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
 
-                    <!-- Components -->
-                    <div *ngIf="showLogin">
-                        <app-login (onSubmit)="onLogin($event)"></app-login>
-                        <p>Don't have an Account? SignUp
-                            <span class="sign-switcher" (click)="showLogin = !showLogin">Now!</span>
-                        </p>
-                    </div>
-                    <div *ngIf="!showLogin">
-                        <app-register (onSubmit)="onRegister($event)"></app-register>
-                        <p class="sign-switcher" (click)="showLogin = !showLogin">
-                            I am already a member!
-                        </p>
-                    </div>
-                    <!-- Components -->
-
-                </div>
-            </div>
+        <!-- Components -->
+        <div *ngIf="showLogin">
+          <h1 class="text-xl font-bold pb-3 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+            Sign in to your account
+          </h1>
+          <app-login (onSubmit)="onLogin($event)"></app-login>
+          <p class="text-sm font-light text-center pt-3 text-gray-500 dark:text-gray-400">Don’t have an account yet?
+            <span class="cursor-pointer font-medium text-red-600 hover:underline dark:text-red-500"
+              (click)="showLogin = !showLogin">Sign up</span>
+          </p>
         </div>
-
-        <div class="col-lg-6 mb-5 mb-lg-0">
-            <img src="https://images.unsplash.com/photo-1600408942710-9e0ccfe941c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1794&q=80"
-                class="w-100 rounded-4 shadow-4" alt="Lives in your hand" />
+        <div *ngIf="!showLogin">
+          <h1 class="text-xl font-bold pb-3 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+            Register new account
+          </h1>
+          <app-register (onSubmit)="onRegister($event)"></app-register>
+          <p class="text-sm font-light text-center pt-3 text-gray-500 dark:text-gray-400">
+            <span class="cursor-pointer font-medium text-red-600 hover:underline dark:text-red-500"
+              (click)="showLogin = !showLogin">I am already a member!</span>
+          </p>
         </div>
+        <!-- Components -->
+
+      </div>
     </div>
-</div>
+  </div>
+</section>

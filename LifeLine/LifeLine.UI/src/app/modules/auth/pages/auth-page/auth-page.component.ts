@@ -16,10 +16,10 @@ export class AuthPageComponent {
   onLogin(user: any) {
     this.authServices.login(user).subscribe(
       (response) => {
-        console.log(`Logged: ${user}`);
+        //o rutare ex. this.router.navigate(['rutaReala'])
       },
       (error) => {
-        console.error('Login Error: ',error)
+        console.error('Login Error: ',error);
       },
       ()=>{
         alert('Login Execued!');
@@ -30,7 +30,7 @@ export class AuthPageComponent {
   onRegister(user: any) {
     this.authServices.singUp(user).subscribe(
         (response) => {
-          console.log(`Registerde: ${user}`);
+          
         },
         (error) => {
           console.error('Register Error: ',error)

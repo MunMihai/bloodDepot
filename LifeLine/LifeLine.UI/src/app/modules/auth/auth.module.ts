@@ -10,6 +10,10 @@ const routes: Routes = [
   {
     path: '',
     component: AuthPageComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
 ]
 
