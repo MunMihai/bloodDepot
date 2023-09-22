@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { LoginModel } from '../../models/loginModel.component';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { LoginModel } from '../../models/login.model';
 
 @Component({
   selector: 'app-login',
@@ -8,23 +8,21 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  @Output() onSubmit = new EventEmitter<LoginModel>();
+  @Output() login = new EventEmitter<LoginModel>();
+  @Input() areCredentialsInvalid: boolean = false;
 
-  public loginForm: FormGroup = new FormGroup({
-    userName: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
-    rememberMe: new FormControl(false)
+  public loginForm = new FormGroup({
+    username: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required])
   })
 
-  submit() {
-    if(this.loginForm.invalid){
-      this.loginForm.markAsTouched();
-      console.log('login current form', this.loginForm);
+  public loginSubmit(): void {
+    if(this.loginForm.invalid) {
       return;
     }
 
-    const formValue = this.loginForm.value as LoginModel;
+    const formData = this.loginForm.value;
 
-    this.onSubmit.emit(formValue)
+    this.login.next(formData as LoginModel);
   }
 }
