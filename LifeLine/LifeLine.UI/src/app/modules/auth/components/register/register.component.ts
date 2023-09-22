@@ -9,7 +9,7 @@ import { RegisterModel } from '../../models/registerModel.component';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  @Output() onSubmit  = new EventEmitter<RegisterModel>();
+  @Output() onSubmit = new EventEmitter<RegisterModel>();
   public registerForm: FormGroup = new FormGroup({
     fullName: new FormControl('', [Validators.required]),
     securityNumber: new FormControl('', [Validators.required]),
@@ -30,7 +30,7 @@ export class RegisterComponent {
   constructor(private route: Router) { }
 
   submit() {
-    if(this.registerForm.invalid) {
+    if (this.registerForm.invalid) {
       this.registerForm.markAllAsTouched();
       console.log('register current form', this.registerForm);
       return;
@@ -45,7 +45,7 @@ export class RegisterComponent {
   previous() {
     this.step = this.step - 1;
   }
-  
+
   public next(): void {
     this.step++;
   }

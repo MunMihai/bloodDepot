@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthPageService } from 'src/app/services/auth-page.service';
 import { RegisterModel } from '../../models/registerModel.component';
+import { LoginModel } from '../../models/loginModel.component';
 
 @Component({
   selector: 'app-auth-page',
@@ -14,14 +15,11 @@ export class AuthPageComponent {
 
   constructor(private authServices: AuthPageService, private router: Router) { }
 
-  onLogin() {
-    // const userMock : User ={
-    //   username: "Pavel",
-    //   password: "abc123",
-    //   confirmPassword: "abc123",
-    this.authServices.login(null).subscribe(
+  onLogin(user: LoginModel) {
+    console.log('user', user)
+    this.authServices.login(user).subscribe(
       (response) => {
-        //o rutare ex. this.router.navigate(['rutaReala'])
+        console.log('response from login', user)
       },
       (error) => {
         console.error('Login Error: ',error);
