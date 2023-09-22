@@ -1,5 +1,6 @@
-﻿using LifeLine.DAL; //needs to be removed
-using LifeLine.DAL.Entites; //needs to be removed
+﻿using LifeLine.BL.DTOs;
+using LifeLine.BL.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,27 +8,47 @@ namespace LifeLine.Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class BloodStorageController : ControllerBase
     {
+        private readonly IBloodStorageService _bloodStorageService;
 
-        private readonly AppDbContext _appDbContext;
-
-        public BloodStorageController(AppDbContext appDbContext)
+        public BloodStorageController(IBloodStorageService bloodStorageService)
         {
-            _appDbContext = appDbContext;
+            _bloodStorageService = bloodStorageService;
+        }
+
+        [HttpGet]
+        public Task<IEnumerable<BloodUnitDTO>> Get()
+        {
+            var bloodUnits = _bloodStorageService.GetBloodStorage();
+            return bloodUnits;
+        }
+
+        [HttpPost]
+        public Task Post(BloodUnitDTO bloodUnit)
+        {
+            _bloodStorageService.AddBloodUnit(bloodUnit);
+            return Task.CompletedTask;
         }
         [HttpGet]
-        public IActionResult Get()
+        [Route("GetBloodUnit")]
+        public Task<BloodUnitDTO> GetBloodUnit(Guid id)
         {
-            var bloodStorage = _appDbContext.BloodUnits.ToList();
-            return Ok(bloodStorage);
+            var bloodUnit = _bloodStorageService.GetBloodUnit(id);
+            return bloodUnit;
         }
-        [HttpPost]
-        public IActionResult Post(BloodUnit bloodUnit)
+        [HttpPut]
+        public Task Put(BloodUnitDTO bloodUnit)
         {
-            _appDbContext.BloodUnits.Add(bloodUnit);
-            _appDbContext.SaveChanges();
-            return StatusCode(StatusCodes.Status201Created);
+            _bloodStorageService.UpdateBloodUnit(bloodUnit.ID, bloodUnit);
+            return Task.CompletedTask;
+        }
+        [HttpDelete]
+        public Task Delete(Guid id)
+        {
+            _bloodStorageService.DeleteBloodUnit(id);
+            return Task.CompletedTask;
         }
     }
 }
