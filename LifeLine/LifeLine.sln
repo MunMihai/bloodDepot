@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3.LifeLine.BL", "LifeLine.B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4.LifeLine.DAL", "LifeLine.DAL\4.LifeLine.DAL.csproj", "{D5D5B58D-AF7F-47E8-B109-64FDC7D66D18}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2.LifeLine.Web", "LifeLine.Web\2.LifeLine.Web.csproj", "{883AD0D1-A761-4A6F-8E6F-A782DD4EFF1D}"
-EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "1.LifeLine.UI", "LifeLine.UI\1.LifeLine.UI.esproj", "{6470F77B-AA67-4A8B-9F8D-E66D757DCA65}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2.LifeLine.Web", "LifeLine.Web\2.LifeLine.Web.csproj", "{C2192F84-2568-457D-86C3-657423799D9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,16 +25,16 @@ Global
 		{D5D5B58D-AF7F-47E8-B109-64FDC7D66D18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5D5B58D-AF7F-47E8-B109-64FDC7D66D18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5D5B58D-AF7F-47E8-B109-64FDC7D66D18}.Release|Any CPU.Build.0 = Release|Any CPU
-		{883AD0D1-A761-4A6F-8E6F-A782DD4EFF1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{883AD0D1-A761-4A6F-8E6F-A782DD4EFF1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{883AD0D1-A761-4A6F-8E6F-A782DD4EFF1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{883AD0D1-A761-4A6F-8E6F-A782DD4EFF1D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6470F77B-AA67-4A8B-9F8D-E66D757DCA65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6470F77B-AA67-4A8B-9F8D-E66D757DCA65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6470F77B-AA67-4A8B-9F8D-E66D757DCA65}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{6470F77B-AA67-4A8B-9F8D-E66D757DCA65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6470F77B-AA67-4A8B-9F8D-E66D757DCA65}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6470F77B-AA67-4A8B-9F8D-E66D757DCA65}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C2192F84-2568-457D-86C3-657423799D9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2192F84-2568-457D-86C3-657423799D9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2192F84-2568-457D-86C3-657423799D9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2192F84-2568-457D-86C3-657423799D9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -10,9 +10,4 @@
     <ProjectReference Include="..\LifeLine.DAL\4.LifeLine.DAL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Implementations\" />
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
-
 </Project>
