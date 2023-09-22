@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { LoginModel } from '../../models/loginModel.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
