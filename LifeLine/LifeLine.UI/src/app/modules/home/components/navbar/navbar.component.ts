@@ -7,5 +7,11 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
 
+  mobileMenuOpen = false;
+  dropdownHover = false;
+
+  toggleMobileMenu() {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+  }
 
 }
