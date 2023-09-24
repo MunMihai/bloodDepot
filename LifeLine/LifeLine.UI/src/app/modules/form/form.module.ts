@@ -4,6 +4,8 @@ import { BloodDonateComponent } from './component/blood-donate/blood-donate.comp
 import { BloodRequestComponent } from './component/blood-request/blood-request.component';
 import { FormsWrapperPageComponent } from './pages/forms-wrapper-page/forms-wrapper-page.component';
 import { Routes, RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 const routes: Routes = [
   {
@@ -23,7 +25,9 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class FormModule { }
