@@ -28,6 +28,7 @@ export class BloodDonateComponent {
     email: new FormControl('test@mail.co', [Validators.required, Validators.email]),
     bloodType: new FormControl('', [Validators.required]),
     rhFactor: new FormControl('', [Validators.required]),
+    quantity: new FormControl(500),
     location: new FormControl('Chisinau', [Validators.required]),
     dateTime: new FormControl(Date.now, [Validators.required]),
     status: new FormControl(Status.OnReview)
@@ -42,9 +43,7 @@ export class BloodDonateComponent {
     }
 
     const formValue = this.donateForm.value as DonateBloodModel;
-    // formValue.blood.bloodType = this.donateForm.get('bloodType')?.value;;
-    // formValue.blood.rhFactor = this.donateForm.get('rhFactor')?.value;
-
+    
     this.onSubmit.emit(formValue);
     console.log("Success: ", formValue);
   }
