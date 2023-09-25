@@ -29,8 +29,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
   ],
   exports: [
-    NavbarComponent,
-    FooterComponent
   ]
 })
 export class HomeModule { }

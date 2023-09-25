@@ -7,6 +7,10 @@ import { DonateBloodModel } from 'src/app/models/donateBlood.model';
 import { UserModel } from 'src/app/models/user.model';
 import { CurrentUserService } from 'src/app/services/current-user.service';
 
+// interface DonateFormGroup {
+//   fullName: FormControl<string>
+// }
+
 @Component({
   selector: 'app-blood-donate',
   templateUrl: './blood-donate.component.html',
@@ -19,11 +23,15 @@ export class BloodDonateComponent {
     private currentUser: CurrentUserService,
   ) { }
 
+  // public get donateFormEmailFormControl() {
+  //   return this.donateForm.controls.fullName;
+  // }
+
   public bloodType = BloodType;
   public rhFactor = RhFactor;
 
   public donateForm: FormGroup = new FormGroup({
-    fullName: new FormControl(this.currentUser.currentUser?.username, [Validators.required]),
+    fullName: new FormControl(this.currentUser.currentUser?.username, {nonNullable: true}),
     phoneNumber: new FormControl('069xxxxxxx', [Validators.required]),
     email: new FormControl('test@mail.co', [Validators.required, Validators.email]),
     bloodType: new FormControl('', [Validators.required]),
