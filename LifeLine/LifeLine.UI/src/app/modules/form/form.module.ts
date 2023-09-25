@@ -6,6 +6,8 @@ import { BloodRequestComponent } from './components/blood-request/blood-request.
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { FormsWrapperPageComponent } from './pages/forms-wrapper-page/forms-wrapper-page.component';
 import { Routes, RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 const routes: Routes = [
   {
@@ -27,7 +29,9 @@ const routes: Routes = [
   imports: [
     CommonModule,
     HomeModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class FormModule { }

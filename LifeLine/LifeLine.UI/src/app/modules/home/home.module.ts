@@ -4,8 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 //Components
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { FooterComponent } from './components/footer/footer.component';
+
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { BlodunitFormComponent } from './components/blodunit-form/blodunit-form.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -21,8 +20,6 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    NavbarComponent,
-    FooterComponent,
     HomePageComponent,
     BlodunitFormComponent,
     HeaderComponent
