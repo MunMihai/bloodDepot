@@ -30,6 +30,10 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+  ],
+  exports: [
+    NavbarComponent,
+    FooterComponent
   ]
 })
 export class HomeModule { }
