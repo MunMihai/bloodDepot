@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BloodType } from 'src/app/enums/blood-type';
 import { RhFactor } from 'src/app/enums/rh-factor';
 import { Status } from 'src/app/enums/status';
@@ -7,9 +7,6 @@ import { DonateBloodModel } from 'src/app/models/donateBlood.model';
 import { UserModel } from 'src/app/models/user.model';
 import { CurrentUserService } from 'src/app/services/current-user.service';
 
-// interface DonateFormGroup {
-//   fullName: FormControl<string>
-// }
 
 @Component({
   selector: 'app-blood-donate',
@@ -19,39 +16,54 @@ import { CurrentUserService } from 'src/app/services/current-user.service';
 export class BloodDonateComponent {
   @Output() onSubmit = new EventEmitter();
 
+  donateBloodForm: FormGroup;
+  bloodFormGroup:FormGroup;
+
   constructor(
-    private currentUser: CurrentUserService,
-  ) { }
+    private fb: FormBuilder
+  ) {
 
-  // public get donateFormEmailFormControl() {
-  //   return this.donateForm.controls.fullName;
-  // }
+    this.bloodFormGroup = this.fb.group({
+      bloodType: ['', [Validators.required]],
+      rhFactor: ['', [Validators.required]],  
+      quantity: [500],
+    });
 
-  public bloodType = BloodType;
-  public rhFactor = RhFactor;
+    this.donateBloodForm = this.fb.group({
+      fullName: ['Mihai', { nonNullable: true }],
+      phoneNumber: ['069xxxxxxx', [Validators.required]],
+      email: ['test@mail.co', [Validators.required, Validators.email]],
+      blood: this.bloodFormGroup,
+      location: ['Chisinau', [Validators.required]],
+      dateTime: [Date.now, [Validators.required]],
+      status: [Status.OnReview]
+    })
+  }
 
-  public donateForm: FormGroup = new FormGroup({
-    fullName: new FormControl(this.currentUser.currentUser?.username, {nonNullable: true}),
-    phoneNumber: new FormControl('069xxxxxxx', [Validators.required]),
-    email: new FormControl('test@mail.co', [Validators.required, Validators.email]),
-    bloodType: new FormControl('', [Validators.required]),
-    rhFactor: new FormControl('', [Validators.required]),
-    quantity: new FormControl(500),
-    location: new FormControl('Chisinau', [Validators.required]),
-    dateTime: new FormControl(Date.now, [Validators.required]),
-    status: new FormControl(Status.OnReview)
-  })
+  
 
+
+  getBloodControls(){
+    return (this.donateBloodForm.get('blood') as FormArray).controls;
+  }
+
+  getRhFactorValues(){
+    return Object.values(RhFactor);
+  }
+
+  getBloodTypeValues(){
+    return Object.values(BloodType);
+  }
 
   submit() {
-    if (this.donateForm.invalid) {
-      this.donateForm.markAllAsTouched();
-      console.log("Errors: ", this.donateForm);
+    if (this.donateBloodForm.invalid) {
+      this.donateBloodForm.markAllAsTouched();
+      console.log("Errors: ", this.donateBloodForm);
       return;
     }
 
-    const formValue = this.donateForm.value as DonateBloodModel;
-    
+    const formValue = this.donateBloodForm.value as DonateBloodModel;
+
     this.onSubmit.emit(formValue);
     console.log("Success: ", formValue);
   }

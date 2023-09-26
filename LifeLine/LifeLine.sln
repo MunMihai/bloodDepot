@@ -11,6 +11,11 @@ Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "1.LifeLine.UI", "LifeLine.U
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2.LifeLine.Web", "LifeLine.Web\2.LifeLine.Web.csproj", "{C2192F84-2568-457D-86C3-657423799D9A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2EF3EE50-F258-4876-A2E2-C62393232B06}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

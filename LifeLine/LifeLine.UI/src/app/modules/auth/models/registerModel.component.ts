@@ -1,3 +1,6 @@
+import { BloodType } from "src/app/enums/blood-type";
+import { RhFactor } from "src/app/enums/rh-factor";
+
 export interface RegisterModel {
     fullName: string;
     securityNumber: string;
@@ -5,8 +8,8 @@ export interface RegisterModel {
     city: string;
     gender: string;
     birthDay: string;
-    bloodType: string;
-    rhesus: string;
+    bloodType: BloodType;
+    rhFactor: RhFactor;
     phoneNumber: string;
     email: string;
     userName: string;

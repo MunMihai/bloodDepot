@@ -47,12 +47,21 @@
         <input type="text" id="full_name" formControlName="fullName"
           class="bg-gray-50 outline-red-500 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
           placeholder="Ernest Hemingway">
+        <div class="text-red-600 text-sm"
+          *ngIf="registerForm.get('fullName')?.hasError('required') && registerForm.get('fullName')?.touched">
+          Please complete you username!
+        </div>
       </div>
       <div>
         <label for="IDNP" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Security Number</label>
         <input type="text" id="IDNP" formControlName="securityNumber"
           class="bg-gray-50 outline-red-500 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
           placeholder="Security Number">
+        <div class="text-red-600 text-sm"
+          *ngIf="registerForm.get('securityNumber')?.hasError('required') && registerForm.get('securityNumber')?.touched">
+          Please complete you securityNumber!
+        </div>
+
       </div>
       <div class="relative">
         <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Country</label>
@@ -68,12 +77,20 @@
           <option value="FR">France</option>
           <option value="DE">Germany</option>
         </select>
+        <div class="text-red-600 text-sm"
+          *ngIf="registerForm.get('country')?.invalid && registerForm.get('country')?.touched">
+          What Country are you form!
+        </div>
       </div>
       <div>
         <label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">City</label>
         <input type="text" id="city" formControlName="city"
           class="bg-gray-50 outline-red-500 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
           placeholder="Chisinau">
+        <div class="text-red-600 text-sm"
+          *ngIf="registerForm.get('city')?.hasError('required') && registerForm.get('city')?.touched">
+          Please complete you securityNumber!
+        </div>
       </div>
 
       <div class="relative">
@@ -90,24 +107,39 @@
 
 
       <div>
-        <label for="birth" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Birth Day</label>
+        <label for="birth" classs="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Birth Day</label>
         <input datepicker type="date" id="birth" formControlName="birthDay"
           class="bg-gray-50 outline-red-500 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
           placeholder="Select birth day">
+        <div class="text-red-600 text-sm"
+          *ngIf="registerForm.get('birthDay')?.hasError('required') && registerForm.get('birthDay')?.touched">
+          Please complete you birthday!
+        </div>
       </div>
 
       <div>
         <label for="blood_type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Blood Type</label>
-        <input type="text" id="blood_type" formControlName="bloodType"
+        <select type="text" id="blood_type" formControlName="bloodType"
           class="bg-gray-50 outline-red-500 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
           placeholder="O, A, B, AB">
+          <option *ngFor="let type of getBloodTypeValues()" [value]="type">{{type}}</option>
+        </select>
+        <div class="text-red-600 text-sm"
+          *ngIf="registerForm.get('bloodType')?.invalid && registerForm.get('bloodType')?.touched">
+          Choose Your blood type!
+        </div>
       </div>
 
       <div>
-        <label for="rhesus" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rhesus (Rh)</label>
-        <input type="text" id="rhesus" formControlName="rhesus"
-          class="bg-gray-50 outline-red-500 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
-          placeholder="positive, negative ">
+        <label for="rhesus" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rhesus</label>
+        <select type="text" id="rhFactor" formControlName="rhFactor"
+          class="bg-gray-50 outline-red-500 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500">
+          <option *ngFor="let rh of getRhFactorValues()" [value]="rh">{{rh}}</option>
+        </select>
+        <div class="text-red-600 text-sm"
+          *ngIf="registerForm.get('rhFactor')?.invalid && registerForm.get('rhFactor')?.touched">
+          Choose your rhesus factor!
+        </div>
       </div>
 
 
@@ -116,12 +148,20 @@
         <input type="tel" id="phone" formControlName="phoneNumber"
           class="bg-gray-50 outline-red-500 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
           placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
+        <div class="text-red-600 text-sm"
+          *ngIf="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched">
+          Your number should be valid!
+        </div>
       </div>
       <div>
         <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email Address</label>
         <input type="email" id="email" formControlName="email"
           class="bg-gray-50 outline-red-500 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
           placeholder="ernest.hemingway@gmail.com">
+        <div class="text-red-600 text-sm"
+          *ngIf="registerForm.get('email')?.hasError('required') && registerForm.get('email')?.touched">
+          Your Email address is required
+        </div>
       </div>
       <!--<div class="text-red-600" *ngIf="email && email.invalid && email.touched">
         This is invalid Email
@@ -134,12 +174,26 @@
         <input type="text" id="user_name" formControlName="userName"
           class="bg-gray-50 outline-red-500 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
           placeholder="LifeSaver">
+        <div class="text-red-600 text-sm"
+          *ngIf="registerForm.get('userName')?.hasError('required') && registerForm.get('userName')?.touched">
+          Please complete you username!
+        </div>
       </div>
       <div class="mb-6">
         <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
         <input type="password" id="password" formControlName="password"
           class="bg-gray-50 outline-red-500 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
           placeholder="•••••••••">
+        <div class="text-red-600 text-sm"
+          *ngIf="registerForm.get('password')?.hasError('required') && registerForm.get('password')?.touched">
+          Password field should be completed!
+        </div>
+        <div class="text-red-600 text-sm" *ngIf="registerForm.get('password')?.hasError('passwordLength')">
+          Password must be at least 8 characters long.
+        </div>
+        <div class="text-red-600 text-sm" *ngIf="registerForm.get('password')?.hasError('passwordStrength')">
+          Password must contain at least one uppercase letter, one lowercase letter, and one number.
+        </div>
       </div>
       <div class="mb-6">
         <label for="confirm_password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm
@@ -147,6 +201,15 @@
         <input type="password" id="confirm_password" formControlName="confirmPassword"
           class="bg-gray-50 outline-red-500 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500"
           placeholder="•••••••••">
+        <div class="text-red-600 text-sm"
+          *ngIf="registerForm.get('confirmPassword')?.hasError('required') && registerForm.get('confirmPassword')?.touched">
+          Confirm your password!
+        </div>
+        <div class="text-red-600 text-sm"
+          *ngIf="registerForm.get('confirmPassword')?.value !== registerForm.get('password')?.value">
+          Value doesn't match the password!
+        </div>
+
       </div>
       <div class="flex items-start mb-6">
         <div class="flex items-center h-5">
