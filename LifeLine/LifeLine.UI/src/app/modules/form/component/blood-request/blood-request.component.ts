@@ -6,7 +6,7 @@ import { Status } from 'src/app/enums/status';
 import { BloodModel } from 'src/app/models/blood.model';
 import { RequestBloodModel } from 'src/app/models/requestBlood.model';
 
-const maxRequests = 8;
+const maxRequests = Object.keys(BloodType).length * Object.keys(RhFactor).length;
 let request: number = 1;
 
 @Component({
