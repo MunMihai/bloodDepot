@@ -1,11 +1,11 @@
 <h2 class="text-3xl font-semibold text-center mb-6 text-red-600">Donate Blood</h2>
-<form [formGroup]="donateForm" (ngSubmit)="submit()" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+<form [formGroup]="donateBloodForm" (ngSubmit)="submit()" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="flex flex-col">
             <label for="fullName" class="font-semibold text-red-600">Full Name</label>
             <input type="text" id="fullName" formControlName="fullName" class="input-field" />
             <div class="text-red-600 text-sm"
-                *ngIf="donateForm.get('fullName')?.invalid && donateForm.get('fullName')?.touched">
+                *ngIf="donateBloodForm.get('fullName')?.invalid && donateBloodForm.get('fullName')?.touched">
                 Your Name is required
             </div>
         </div>
@@ -14,7 +14,7 @@
             <label for="phoneNumber" class="font-semibold text-red-600">Phone Number</label>
             <input type="text" id="phoneNumber" formControlName="phoneNumber" class="input-field" />
             <div class="text-red-600 text-sm"
-                *ngIf="donateForm.get('phoneNumber')?.invalid && donateForm.get('phoneNumber')?.touched">
+                *ngIf="donateBloodForm.get('phoneNumber')?.invalid && donateBloodForm.get('phoneNumber')?.touched">
                 Your number should be valid!
             </div>
         </div>
@@ -24,45 +24,44 @@
         <label for="email" class="font-semibold text-red-600">Email</label>
         <input type="email" id="email" formControlName="email" class="input-field" />
         <div class="text-red-600 text-sm"
-            *ngIf="donateForm.get('email')?.invalid && donateForm.get('email')?.touched">
+            *ngIf="donateBloodForm.get('email')?.hasError('required') && donateBloodForm.get('email')?.touched">
             Your Email address is required
         </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-6">
+    <div formGroupName="blood" class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-6">
         <div class="flex flex-col">
             <label for="bloodType" class="font-semibold text-red-600">Blood Type</label>
-            <select id="bloodType" formControlName="bloodType" class="input-field">
-                <option [value]="bloodType.A">A</option>
-                <option [value]="bloodType.B">B</option>
-                <option [value]="bloodType.AB">AB</option>
-                <option [value]="bloodType.O">O</option>
+            <select class="input-field" id="bloodType" formControlName="bloodType">
+                <option *ngFor="let type of getBloodTypeValues()" [value]="type">{{type}}</option>
             </select>
             <div class="text-red-600 text-sm"
-                *ngIf="donateForm.get('bloodType')?.invalid && donateForm.get('bloodType')?.touched">
+                *ngIf="donateBloodForm.get('bloodType')?.invalid && donateBloodForm.get('bloodType')?.touched">
                 Choose Your blood type!
             </div>
         </div>
 
         <div class="flex flex-col">
             <label for="rhesus" class="font-semibold text-red-600">Rhesus</label>
-            <select id="rhesus" formControlName="rhFactor" class="input-field">
-                <option [value]="rhFactor.Positive">RH+</option>
-                <option [value]="rhFactor.Negative">RH-</option>
+            <select class="input-field" id="rhesus" formControlName="rhFactor">
+                <option *ngFor="let rh of getRhFactorValues()" [value]="rh">{{rh}}</option>
             </select>
             <div class="text-red-600 text-sm"
-                *ngIf="donateForm.get('rhFactor')?.invalid && donateForm.get('rhFactor')?.touched">
+                *ngIf="donateBloodForm.get('rhFactor')?.invalid && donateBloodForm.get('rhFactor')?.touched">
                 Choose your rhesus factor!
             </div>
         </div>
+
+        <input type="hidden" formControlName="quantity">
+
     </div>
 
     <div class="flex flex-col">
         <label for="location" class="font-semibold text-red-600">Location</label>
         <input type="text" id="location" formControlName="location" class="input-field" />
         <div class="text-red-600 text-sm"
-            *ngIf="donateForm.get('location')?.invalid && donateForm.get('location')?.touched">
-            Select location 
+            *ngIf="donateBloodForm.get('location')?.invalid && donateBloodForm.get('location')?.touched">
+            Select location
         </div>
     </div>
 
@@ -70,13 +69,12 @@
         <label for="dateTime" class="font-semibold text-red-600">Date & Time</label>
         <input type="datetime-local" id="dateTime" formControlName="dateTime" class="input-field" />
         <div class="text-red-600 text-sm"
-            *ngIf="donateForm.get('dateTime')?.invalid && donateForm.get('dateTime')?.touched">
+            *ngIf="donateBloodForm.get('dateTime')?.invalid && donateBloodForm.get('dateTime')?.touched">
             Select the time!
         </div>
     </div>
 
     <input type="hidden" formControlName="status">
-    <input type="hidden" formControlName="quantity">
 
     <div class="flex justify-center pt-6">
         <button type="submit"
