@@ -25,7 +25,8 @@ export class RegisterComponent {
     email: new FormControl('', [Validators.required, Validators.email]),
     userName: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required, Validators.minLength(8), createPasswordStrengthValidator()]),
-    confirmPassword: new FormControl('', [Validators.required,])
+    confirmPassword: new FormControl('', [Validators.required,]),
+    agreeToTerms: new FormControl( false ,[Validators.required, ])
   })
 
   public step: any = 0;
@@ -65,7 +66,8 @@ export class RegisterComponent {
     } else if (this.step === 1) {
       return this.registerForm.get('userName')?.valid &&
              this.registerForm.get('password')?.valid &&
-             this.registerForm.get('confirmPassword')?.valid;
+             this.registerForm.get('confirmPassword')?.valid &&
+             this.registerForm.get('agreeToTerms')?.value === true;
     } else {
       return true; // Dacă nu sunteți pe pasul 0 sau 1, considerăm întotdeauna că este valid
     }

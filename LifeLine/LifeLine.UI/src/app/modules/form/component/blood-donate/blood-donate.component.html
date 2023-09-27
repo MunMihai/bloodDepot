@@ -12,7 +12,7 @@
 
         <div class="flex flex-col">
             <label for="phoneNumber" class="font-semibold text-red-600">Phone Number</label>
-            <input type="text" id="phoneNumber" formControlName="phoneNumber" class="input-field" />
+            <input type="text" id="phoneNumber" formControlName="phoneNumber" class="input-field" placeholder="12-345-678" pattern="[0-9]{2}-[0-9]{3}-[0-9]{3}">
             <div class="text-red-600 text-sm"
                 *ngIf="donateBloodForm.get('phoneNumber')?.invalid && donateBloodForm.get('phoneNumber')?.touched">
                 Your number should be valid!

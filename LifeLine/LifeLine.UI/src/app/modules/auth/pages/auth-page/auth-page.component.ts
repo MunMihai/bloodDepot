@@ -23,10 +23,6 @@ export class AuthPageComponent {
     ) { }
 
   onLogin(loginFormData: LoginModel) {
-    // const userMock : User ={
-    //   username: "Pavel",
-    //   password: "abc123",
-    //   confirmPassword: "abc123",
     this.authServices.login(loginFormData).pipe(
       tap((authenticationToken) => {
         localStorage.setItem('authentication_token', authenticationToken);
