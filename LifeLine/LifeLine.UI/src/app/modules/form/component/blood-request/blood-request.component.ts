@@ -70,11 +70,11 @@ export class BloodRequestComponent {
     return Object.values(BloodType);
   }
 
-  submit() {
+  submitForm() {
     if (this.requestBloodForm.valid) {
       const form = this.requestBloodForm.value as RequestBloodModel;
       this.onSubmit.emit(form);
-      console.log('Succes: ', form);
+      console.log('Success: ', form);
     }
     else {
       this.requestBloodForm.markAllAsTouched();

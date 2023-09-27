@@ -14,10 +14,10 @@ import { CurrentUserService } from 'src/app/services/current-user.service';
   styleUrls: ['./blood-donate.component.css']
 })
 export class BloodDonateComponent {
-  @Output() onSubmit = new EventEmitter();
+  @Output() onSubmit = new EventEmitter<DonateBloodModel>;
 
   donateBloodForm: FormGroup;
-  bloodFormGroup:FormGroup;
+  bloodFormGroup: FormGroup;
 
   constructor(
     private fb: FormBuilder
@@ -25,7 +25,7 @@ export class BloodDonateComponent {
 
     this.bloodFormGroup = this.fb.group({
       bloodType: ['', [Validators.required]],
-      rhFactor: ['', [Validators.required]],  
+      rhFactor: ['', [Validators.required]],
       quantity: [500],
     });
 
@@ -40,32 +40,30 @@ export class BloodDonateComponent {
     })
   }
 
-  
 
 
-  getBloodControls(){
+
+  getBloodControls() {
     return (this.donateBloodForm.get('blood') as FormArray).controls;
   }
 
-  getRhFactorValues(){
+  getRhFactorValues() {
     return Object.values(RhFactor);
   }
 
-  getBloodTypeValues(){
+  getBloodTypeValues() {
     return Object.values(BloodType);
   }
 
-  submit() {
-    if (this.donateBloodForm.invalid) {
-      this.donateBloodForm.markAllAsTouched();
-      console.log("Errors: ", this.donateBloodForm);
-      return;
+  submitForm() {
+    if (this.donateBloodForm.valid) {
+      const form = this.donateBloodForm.value as DonateBloodModel;
+      this.onSubmit.emit(form);
+      console.log("Success: ", form);
     }
-
-    const formValue = this.donateBloodForm.value as DonateBloodModel;
-
-    this.onSubmit.emit(formValue);
-    console.log("Success: ", formValue);
+    else {
+      this.donateBloodForm.markAllAsTouched();
+      console.error("Error: ", this.donateBloodForm);
+    }
   }
-
 }

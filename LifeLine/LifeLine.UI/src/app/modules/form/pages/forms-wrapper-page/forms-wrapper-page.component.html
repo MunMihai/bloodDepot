@@ -1,5 +1,8 @@
 <div class="bg-red-100 min-h-screen flex justify-center items-center">
-    <div class="bg-white shadow-md rounded-md p-8">
-        <router-outlet></router-outlet>
+    <div 
+    class="bg-white shadow-md rounded-md p-8">
+        <app-blood-donate *ngIf="currentRoute === 'donate-form' " (onSubmit)="handleDonateBloodSubmit($event)"></app-blood-donate>
+        <app-blood-request *ngIf="currentRoute === 'request-form'" (onSubmit)="handleRequestBloodSubmit($event)"></app-blood-request>
+        <!-- <router-outlet></router-outlet> -->
     </div>
 </div>
