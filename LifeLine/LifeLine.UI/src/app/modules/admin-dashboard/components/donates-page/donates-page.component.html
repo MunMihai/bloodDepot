@@ -1,0 +1,9 @@
+<section class="bg-white p-4 shadow-md rounded-md mb-8">
+    <h3 class="text-xl font-semibold mb-4">Requests Table for Donation</h3>
+    <app-donations-table (approveDonation)="handleApprove($event)" (deleteDonation)="handleDelete($event)" [isApproved]="false" [displayStatus]="0" [data]="data"></app-donations-table>
+</section>
+
+<section class="bg-white p-4 shadow-md rounded-md">
+    <h3 class="text-xl font-semibold mb-4">Approved Table for Donation</h3>
+    <app-donations-table (deleteDonation)="handleDelete($event)" [isApproved]="true" [displayStatus]="1" [data]="data"></app-donations-table>
+</section>

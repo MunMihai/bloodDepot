@@ -1,0 +1,19 @@
+<div class="bg-gray-200 min-h-screen">
+    <div class="container mx-auto ">
+        <app-blood-chart />
+    </div>
+    <header class="bg-blue-500 py-4 sticky">
+        <div class="flex space-x-4">
+            <a routerLink="/Admin/donates-page"
+            class="text-white hover:bg-gray-100 hover:text-gray-400 rounded-md px-3 py-2 text-sm font-medium focus:bg-gray-200 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-900 dark:focus:bg-gray-950">Blood
+            Donates</a>
+            <a routerLink="/Admin/requests-page"
+            class="text-white hover:bg-gray-100 hover:text-gray-400 rounded-md px-3 py-2 text-sm font-medium focus:bg-gray-200 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-900 dark:focus:bg-gray-950">Blood
+            Requests</a>
+        </div>
+    </header>
+    <main class="container mx-auto mt-8 p-4">
+        <h2 class="text-3xl font-bold mb-4">Admin Dashboard</h2>
+        <router-outlet />
+    </main>
+</div>

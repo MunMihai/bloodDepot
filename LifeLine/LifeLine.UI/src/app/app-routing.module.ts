@@ -1,24 +1,44 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './modules/static/home/home.component';
+import { AboutUsComponent } from './modules/static/about-us/about-us.component';
+import { CampaignComponent } from './modules/static/campaign/campaign.component';
+import { ContactComponent } from './modules/static/contact/contact.component';
 
 const routes: Routes = [
+  { path: 'Home', component: HomeComponent },
+  { path: 'AboutUs', component: AboutUsComponent },
+  { path: 'Campaign', component: CampaignComponent },
+  { path: 'Contact', component: ContactComponent },
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'login'
+    redirectTo: 'Authentificate'
   },
   {
-    path: 'login',
-    loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
+    path: 'Authentificate',
+    loadChildren: () => import('./modules/authentification/authentification.module').then(m => m.AuthentificationModule)
   },
-  { path: 'home', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) },
-  { path: 'dashboard', loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule) },
-  { path: 'form', loadChildren: () => import('./modules/form/form.module').then(m => m.FormModule) },
+  {
+    path: 'Info',
+    loadChildren: () => import('./modules/user-info/user-info.module').then(m => m.UserInfoModule)
+  },
+  {
+    path: 'Feature',
+    loadChildren: () => import('./modules/feature/feature.module').then(m => m.FeatureModule)
+  },
+  {
+    path: 'Admin',
+    loadChildren: () => import('./modules/admin-dashboard/admin-dashboard.module').then(m => m.AdminDashboardModule)
+  },
+  {
+    path: 'Info',
+    loadChildren: () => import('./modules/user-info/user-info.module').then(m => m.UserInfoModule)
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-
 export class AppRoutingModule { }

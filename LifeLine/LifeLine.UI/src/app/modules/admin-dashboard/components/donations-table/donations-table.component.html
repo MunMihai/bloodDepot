@@ -1,0 +1,39 @@
+<table class="min-w-full divide-y divide-gray-200">
+    <thead>
+        <tr>
+            <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Id</th>
+            <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Full Name</th>
+            <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Phone Number</th>
+            <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Email</th>
+            <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Location</th>
+            <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Date</th>
+            <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Blood Type</th>
+            <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Rhesus</th>
+            <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+        </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-200">
+        <ng-container *ngFor="let donation of  data">
+            <tr *ngIf="donation.status === displayStatus">
+                <td class="px-6 py-3 whitespace-no-wrap">{{donation.id}}</td>
+                <td class="px-6 py-3 whitespace-no-wrap">{{donation.fullName}}</td>
+                <td class="px-6 py-3 whitespace-no-wrap">{{donation.phoneNumber}}</td>
+                <td class="px-6 py-3 whitespace-no-wrap">{{donation.email}}</td>
+                <td class="px-6 py-3 whitespace-no-wrap">{{donation.location}}</td>
+                <td class="px-6 py-3 whitespace-no-wrap">{{donation.dateTime| date:'dd/MM/yyyy HH:mm'}}</td>
+                <td class="px-6 py-3 whitespace-no-wrap">{{donation.bloodType}}</td>
+                <td class="px-6 py-3 whitespace-no-wrap">{{donation.rhFactor}}</td>
+                <td class="px-6 py-3 whitespace-no-wrap">
+                    <div *ngIf="!isApproved">
+                        <button (click)="approve(donation)" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mr-2">Approve</button>
+                        <button (click)="delete(donation)" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Deny</button>
+                    </div>
+                    <div *ngIf="isApproved">
+                        <button (click)="delete(donation)" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Delete</button>
+                    </div>
+                </td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>
+

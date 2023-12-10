@@ -1,0 +1,7 @@
+<div class="bg-gray-50 min-h-screen flex justify-center items-center">
+    <div 
+    class="bg-[#a09797] shadow-md rounded-md p-8">
+        <app-donate-form *ngIf="currentRoute === 'donate-form' " (onSubmit)="handleDonateBloodSubmit($event)"></app-donate-form>
+        <app-request-form *ngIf="currentRoute === 'request-form'" (onSubmit)="handleRequestBloodSubmit($event)"></app-request-form>
+    </div>
+</div>

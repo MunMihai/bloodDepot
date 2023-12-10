@@ -1,0 +1,87 @@
+<h2 class="text-3xl font-bold text-center mb-6 text-red-600">Request Blood</h2>
+<form [formGroup]="requestBloodForm" (ngSubmit)="submitForm()" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+    <div >
+      <div class="flex flex-col">
+        <label for="name" class="font-semibold text-red-600">Name</label>
+        <input class="input-field" type="text" id="name" formControlName="name"
+          placeholder="ex: Institutul Medicina de Urgenta" />
+        <div class="text-red-600 text-sm"
+          *ngIf="requestBloodForm.get('name')?.invalid && requestBloodForm.get('name')?.touched">
+          Your Name is required
+        </div>
+      </div>
+
+      <div class="flex flex-col mt-4">
+        <label for="phoneNumber" class="font-semibold text-red-600">Phone Number</label>
+        <input class="input-field" type="text" id="phoneNumber" formControlName="phoneNumber" placeholder="12-345-678" pattern="[0-9]{2}-[0-9]{3}-[0-9]{3}">
+        <div class="text-red-600 text-sm"
+          *ngIf="requestBloodForm.get('phoneNumber')?.invalid && requestBloodForm.get('phoneNumber')?.touched">
+          Your number should be valid!
+        </div>
+      </div>
+
+      <div class="flex flex-col mt-4">
+        <label for="email" class="font-semibold text-red-600">Email</label>
+        <input class="input-field" type="email" id="email" formControlName="email" placeholder="official@med.com" />
+        <div class="text-red-600 text-sm"
+          *ngIf="requestBloodForm.get('email')?.hasError('required') && requestBloodForm.get('email')?.touched">
+          Your Email address is required
+        </div>
+        <div class="text-red-600 text-sm"
+          *ngIf="requestBloodForm.get('email')?.hasError('email') && requestBloodForm.get('email')?.touched">
+          Invalid email format!
+        </div>
+      </div>
+    </div>
+
+    <div formArrayName="blood" class="flex flex-col ">
+      <div *ngFor="let bloodGroup of getBloodControls(); let i = index" class="flex space-x-4">
+        <div [formGroupName]="i" class="flex space-x-2">
+          <div class="form-group">
+            <label for="bloodType" class="font-semibold text-red-600">Blood Type</label>
+            <select class="input-field" id="bloodType" formControlName="bloodType">
+              <option value="" disabled selected>Select Blood Type</option>
+              <option *ngFor="let type of getBloodTypeValues()" [value]="type">{{type}}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="rhFactor" class="font-semibold text-red-600">Rhesus</label>
+            <select class="input-field" id="rhFactor" formControlName="rhFactor">
+              <option value="" disabled selected>Select Rhesus</option>
+              <option *ngFor="let rh of getRhFactorValues()" [value]="rh">{{rh}}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="quantity" class="font-semibold text-red-600">Quantity (ml)</label>
+            <div class="flex items-center space-x-2">
+              <input class="input-field flex-grow w-48" type="number" id="quantity" formControlName="quantity"
+                placeholder="ml" step="500" min="0">
+            </div>
+          </div>
+
+          <button type="button" (click)="removeBloodgroup(i)"
+            class="h-10 w-10 btn bg-red-600 text-white hover:bg-red-700 py-2 px-4 rounded-lg font-semibold tracking-wide">
+            x
+          </button>
+        </div>
+      </div>
+      <button type="button" (click)="addBloodGroup()"
+        class="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center mt-4 ">
+        +
+      </button>
+    </div>
+
+  </div>
+  <input type="hidden" formControlName="status">
+
+  <div class="flex justify-center pt-6">
+    <button type="submit"
+      class="btn bg-red-600 text-white hover:bg-red-700 py-2 px-4 rounded-full font-semibold tracking-wide">
+      Request Now
+    </button>
+  </div>
+</form>

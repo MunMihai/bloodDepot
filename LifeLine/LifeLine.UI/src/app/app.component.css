@@ -1,0 +1,7 @@
+.sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Asigură că bara de navigare este deasupra celorlalte elemente */
+    color: #c8c4c4
+}

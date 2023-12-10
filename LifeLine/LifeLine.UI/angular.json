@@ -22,16 +22,10 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              {
-                "glob": "**/*",
-                "input": "./node_modules/@mdi/angular-material/",
-                "output": "./assets/"
-              }
+              "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "./node_modules/aos/dist/aos.css"
+              "src/styles.css"
             ],
             "scripts": []
           },
@@ -96,16 +90,10 @@
             "tsConfig": "tsconfig.spec.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              {
-                "glob": "**/*",
-                "input": "./node_modules/@mdi/angular-material/",
-                "output": "./assets/"
-              }
+              "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "./node_modules/aos/dist/aos.css"
+              "src/styles.css"
             ],
             "scripts": []
           }
@@ -114,6 +102,6 @@
     }
   },
   "cli": {
-    "analytics": "8d7c10c5-6065-43a3-bb0a-8b8043a25c19"
+    "analytics": "0eac6282-ceb7-489d-9c0b-31dbc2849769"
   }
 }

@@ -18,7 +18,7 @@ export class AppComponent {
       if (event instanceof NavigationEnd) {
         // Check the current route and set variables accordingly
         const currentRoute = this.route.root.firstChild?.snapshot.routeConfig?.path;
-        if (currentRoute === 'login' || currentRoute === 'register') {
+        if (currentRoute === 'Authentificate') {
           this.showNavbar = false;
           this.showFooter = false;
         } else {
@@ -28,6 +28,4 @@ export class AppComponent {
       }
     });
   }
-
-
 }
